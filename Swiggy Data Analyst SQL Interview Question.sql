@@ -1,3 +1,7 @@
+--Question:
+
+-- Write an SQL query to find out the supplied_id, product_id, and starting date (record_date) for the records where the stock quantity is less than 50 for two or more consecutive days.
+
 CREATE TABLE stock (
     supplier_id INT,
     product_id INT,
@@ -29,12 +33,6 @@ VALUES
  (2, 2, 52, '2022-01-15'),
     (2, 2, 23, '2022-01-16');
 
-select *,ROW_NUMBER()over(partition by supplier_id,product_id
-order by record_date
-)  from stock 
-where stock_quantity<50
-order by supplier_id,product_id
-
 with cte1 as (
 select *,LAG(record_date,1,record_date)OVER(partition by supplier_id,product_id
 order by record_date) lag1,
@@ -54,6 +52,7 @@ from cte2 group by supplier_id,product_id,sum1)
 select supplier_id,product_id, ky as start_date from cte3
 where py > 1
 
+-- OUTPUT
 /*
 2022-01-02 
 2022-01-10 
