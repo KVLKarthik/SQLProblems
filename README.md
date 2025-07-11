@@ -1,2 +1,3 @@
-# SQLProblems
-This repository contains a collection of solved SQL problems, showcasing various queries, optimizations, and best practices
+# SQL workouts 
+for real-world scenarios—queries, tweaks, and tricks.
+
